@@ -1,5 +1,6 @@
-from mymodule.main import my_sum
+from mymodule.main import my_sum, my_sum_py
 import pytest
+import timeit
 
 def test_empty_arr():
     res = my_sum([])
@@ -34,3 +35,7 @@ def test_wrong_datatype():
     with pytest.raises(TypeError):
         res = my_sum(['a'])
     
+def test_performance():
+    arr_len = 1000
+    print("cpp func:", timeit.timeit('my_sum(arr)', setup=f'arr = [1] * {arr_len};', globals=globals(), number=1000))
+    print("py func:", timeit.timeit('my_sum_py(arr)', setup=f'arr = [1] * {arr_len};', globals=globals(), number=1000))
