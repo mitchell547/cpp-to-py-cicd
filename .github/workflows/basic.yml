@@ -20,7 +20,9 @@ jobs:
         run: g++ --version
           
       - name: Build C++ library
-        run: g++ -fPIC -shared -o ./python/mymodule/mylib/mylib.so ./cpp/src/mylib.cpp        
+        run: |
+          mkdir -p ./python/mymodule/mylib/
+          g++ -fPIC -shared -o ./python/mymodule/mylib/mylib.so ./cpp/src/mylib.cpp        
 
       - name: Set up Python
         uses: actions/setup-python@v6
